@@ -1,0 +1,18 @@
+/* Ingredient page css style */
+
+/* banner background */
+.jumbotron{
+  background-image: url("../images/pexels-karolina-grabowska-4032970.jpg");
+  height: 50vh;
+
+  /* Center and scale the image nicely */
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* Ingredient section */
+.ingredient-section{
+  padding: 10px 50px;
+}
