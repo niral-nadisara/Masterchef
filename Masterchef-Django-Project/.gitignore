@@ -6,6 +6,7 @@ __pycache__
 db.sqlite3
 media
 
+
 # Backup files # 
 *.bak 
 
@@ -136,3 +137,8 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+/django_project/myenv
+ingredient/__pycache__/admin.cpython-312.pyc
+ingredient/__pycache__/models.cpython-312.pyc
+ingredient/__pycache__/views.cpython-312.pyc

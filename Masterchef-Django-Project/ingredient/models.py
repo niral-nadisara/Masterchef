@@ -18,7 +18,6 @@ class ChefRecipe(models.Model):
     steps = models.TextField()
     description = models.TextField()
     ingredients = models.TextField()
-    field7 = models.TextField()
 
     def __str__(self):
         return self.cuisine

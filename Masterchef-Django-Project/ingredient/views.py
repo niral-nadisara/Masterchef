@@ -77,7 +77,7 @@ def read_ingredient_by_name(request):
         print(query_terms)
         for term in query_terms:
             data = data.filter(ingredients__icontains=term)
-
+            print(data)
     paginator = Paginator(data, 10)
     page_number = request.GET.get('page', 1)
     data = paginator.get_page(page_number)

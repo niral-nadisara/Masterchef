@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
                 ('steps', models.TextField()),
                 ('description', models.TextField()),
                 ('ingredients', models.TextField()),
-                ('field7', models.TextField()),
             ],
         ),
     ]
