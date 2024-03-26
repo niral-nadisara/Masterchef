@@ -139,6 +139,4 @@ GitHub.sublime-settings
 .history
 
 /django_project/myenv
-ingredient/__pycache__/admin.cpython-312.pyc
-ingredient/__pycache__/models.cpython-312.pyc
-ingredient/__pycache__/views.cpython-312.pyc
+**/__pycache__
