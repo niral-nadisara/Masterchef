@@ -11,3 +11,14 @@ class recipeItem(models.Model):
   directions = models.TextField()
   img_url = models.TextField()
   list_ingredient = models.ManyToManyField(ingredientItem)
+
+class ChefRecipe(models.Model):
+    cuisine = models.TextField()
+    time = models.TextField()
+    steps = models.TextField()
+    description = models.TextField()
+    ingredients = models.TextField()
+    field7 = models.TextField()
+
+    def __str__(self):
+        return self.cuisine

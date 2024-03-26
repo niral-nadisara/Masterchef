@@ -15,16 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ingredient.views import ingredientView, searchView, get_ingredientId, get_match_recipe
+#from ingredient.views import ingredientView, searchView, get_ingredientId, get_match_recipe, read_ingredient_by_name
+
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    #view 
-    path('', ingredientView),
-    path('search/<int:ingredientId>/', searchView),
-
-    #api
-    path('api/ingredient_id/<ingredientName>', get_ingredientId),
-    path('api/match_recipe/', get_match_recipe),
+    path("ingredient/", include("ingredient.urls")),
 ]

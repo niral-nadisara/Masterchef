@@ -1,34 +1,11 @@
+from audioop import reverse
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import ingredientItem, recipeItem
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import ingredientItem, recipeItem, ChefRecipe
 import json
 from django.views.decorators.csrf import csrf_exempt
-
-
-
-# Associate ingredient with a recipe
-#r1.list_ingredient.add(i1)
-
-# Create new recipe
-#r1 = recipeItem(name="recipe-name", ingredients="ingredient1#ingredient2#ingredient3", directions="step1#step2#step3", img_url="image-url-link")
-#r1.save()
-
-# Create ingredients
-ingredients_data = [
-    #{'name': 'Spinach', 'property': 'Vegetables', 'img_url': 'static/images/spinach.jpg'},
-    #{'name': 'Rice', 'property': 'Grains', 'img_url': 'static/images/rice.jpg'},
-    # Add more ingredients as needed
-]
-
-# Loop through the data and create ingredients
-for ingredient in ingredients_data:
-    ingredient_obj = ingredientItem.objects.create(
-        name=ingredient['name'],
-        property=ingredient['property'],
-        img_url=ingredient['img_url']
-    )
-    ingredient_obj.save()
-
+from django.db.models import Q
+from django.core.paginator import Paginator
 
 #view for ingredient page
 def ingredientView(request):
@@ -88,3 +65,21 @@ def get_match_recipe(request):
     except:
       response = json.dumps([{'Error': 'No id with that name'}])
   return HttpResponse(response, content_type='text/json')
+
+
+def read_ingredient_by_name(request):
+    data = ChefRecipe.objects.all()
+
+    if 'q' in request.GET:
+        q = request.GET['q']
+        print(q)
+        query_terms = q.split(",")
+        print(query_terms)
+        for term in query_terms:
+            data = data.filter(ingredients__icontains=term)
+
+    paginator = Paginator(data, 10)
+    page_number = request.GET.get('page', 1)
+    data = paginator.get_page(page_number)
+
+    return render(request, 'ingredient.html', {'data': data})

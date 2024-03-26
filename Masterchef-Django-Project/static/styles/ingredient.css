@@ -2,7 +2,7 @@
 
 /* banner background */
 .jumbotron{
-  background-image: url("../images/pexels-karolina-grabowska-4032970.jpg");
+  /* background-image: url("/Users/niralsara/Documents/GitHub/Masterchef/Masterchef-Django-Project/static/images/slideshow4.jpg"); */
   height: 50vh;
 
   /* Center and scale the image nicely */
@@ -10,9 +10,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+
+  text-shadow: 0 0 3px #58A399, 0 0 5px #496989;
 }
 
 /* Ingredient section */
 .ingredient-section{
   padding: 10px 50px;
 }
+
