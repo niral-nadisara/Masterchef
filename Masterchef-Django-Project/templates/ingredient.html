@@ -28,12 +28,12 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- style  -->
-  <link rel="stylesheet" href="{% static '/styles/ingredient.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/ingredient.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 
   <style>
     /* Ingredient section */
-.ingredient-section{
+/* .ingredient-section{
   padding: 10px 50px;
 }
 
@@ -59,19 +59,19 @@
 
 .card-text {
   margin-bottom: 10px;
-}
+} */
 
 /* Custom background color */
-.bg-light-custom {
+/* .bg-light-custom {
   background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%) !important;
   
-}
+} */
 /* Hover effect */
-.bg-light-custom:hover {
+/* .bg-light-custom:hover {
   background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%) !important;
-}
+} */
 
-.recipe-card {
+/* .recipe-card {
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -93,18 +93,8 @@
 
 .card-text {
   margin-bottom: 10px;
-}
- /* Footer styles */
- .footer {
-  background-color: #c1dfc4;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  /* position: absolute; */
-  bottom: 0;
-  width: 100%;
-  position:relative;
-}
+} */
+ 
   </style>
 </head>
 
@@ -203,6 +193,7 @@
                     <p class="card-text"><b>Ingredients:</b> {{ recipe.ingredients }}</p>
                     <p class="card-text"><b>Steps:</b> {{ recipe.steps }}</p>
                     <p class="card-text"><b>Description:</b> {{ recipe.description }}</p>
+                    <p class="card-text"><b>Ingredient More Needed:</b> {{ recipe.ingredientsMoreNeded }}</p>
                 </div>
             </div>
         </div>

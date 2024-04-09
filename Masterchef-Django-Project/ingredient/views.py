@@ -127,22 +127,35 @@ def read_ingredient_by_name(request):
     if 'q' in request.GET:
         q = request.GET['q']
         query_terms = q.split(",")
-
         for term in query_terms:
             data = data.filter(ingredients__icontains=term)
 
     # Convert queryset data to a list of dictionaries
     data_dict_list = []
     for instance in data:
+        ingredients_list = [item.strip() for item in instance.ingredients.split(",")]
+        ingredients_list = list(ingredients_list)
+        items_to_remove = list(q.split(","))
+        # print("Initial Ingredients List:", ingredients_list)
+        # print("Items to Remove:", items_to_remove)
+
+        # Remove items dynamically using list comprehension
+        ingredients_listUpdated = [item for item in ingredients_list if item not in items_to_remove]
+        # print("Updated Ingredients List:", ingredients_listUpdated)
+        ingredientsMoreNeded = ', '.join([str(elem) for elem in ingredients_listUpdated])
+        # print("Updated Ingredients List as str: ", ingredientsMoreNeded)
+
         instance_dict = {
             'cuisine': instance.cuisine,
             'time': instance.time,
             'ingredients': instance.ingredients,
             'steps': instance.steps,
-            'description': instance.description
+            'description': instance.description,
+            'ingredientsMoreNeded':ingredientsMoreNeded
             # Add other fields as needed
         }
         data_dict_list.append(instance_dict)
+        # break;
 
     # Check if any recipes are found
     if not data_dict_list:
