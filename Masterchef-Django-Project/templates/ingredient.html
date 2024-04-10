@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Masterchef</title>
   {% load static %}
+
   <!-- jquery -->
   <SCRIPT src="https://code.jquery.com/jquery-3.2.1.min.js"></SCRIPT>
 
@@ -28,45 +29,120 @@
 
   <!-- style  -->
   <link rel="stylesheet" href="{% static 'styles/ingredient.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+
+  <style>
+    /* Ingredient section */
+/* .ingredient-section{
+  padding: 10px 50px;
+}
+
+.recipe-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+} */
+
+/* Custom background color */
+/* .bg-light-custom {
+  background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%) !important;
+  
+} */
+/* Hover effect */
+/* .bg-light-custom:hover {
+  background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%) !important;
+} */
+
+/* .recipe-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+} */
+ 
+  </style>
 </head>
 
 <!-- **********************
        BODY
-       ********************** -->
-
-<body>
+       ********************** -->     
+<body background="/static/images/cool-background-1.png">
   <!-- **********************
 	 HEADER
 	 ********************** -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:cadetblue;">
-    <a class="navbar-brand" href="/">Masterchef</a>
+
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #58A399;">
+    <a class="navbar-brand" style="color: rgb(248, 240, 240);" href="/ingredient/home/">Masterchef</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/">Add your ingredients here!<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="/search/2">All Recipes</a>
+        <a class="nav-item nav-link" style="color: rgb(248, 240, 240);" href="/ingredient/home/">About</a>
+        <a class="nav-item nav-link" style="color: rgb(248, 240, 240);" href="/ingredient/home/">Contact us</a>
       </div>
     </div>
-  </nav>
-
-  <!-- **********************
-	     Banner 
-       ********************** -->
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3" style="color: rgb(248, 240, 240);">Masterchef</h1>
-      <p class="card-text" style="font-size: 25px; color: rgb(248, 240, 240);">Let us help you find recipes</p>
-      <p><a class="btn btn-primary btn-lg" href="/search/2" role="button">Get Started &raquo;</a></p>
+  </nav> -->
+  <div class="header">
+    <a href="/ingredient/home/" class="logo">Masterchef</a>
+    <div class="header-right">
+      <a class="active" href="/ingredient/home/">Home</a>
+      <a href="/ingredient/home/">Contact</a>
+      <a href="/ingredient/home/">About</a>
     </div>
   </div>
 
   <!-- **********************
+	     Banner 
+       ********************** -->
+       <br/>
+  <div class="jumbotron" style="background-image: url('/static/images/banner-2.jpg');">
+    <div class="container">
+      <h1 class="display-3" style="color: white ;font-family: 'Snell Roundhand';">Hola Amigos</h1>
+      <p class="card-text" style="font-size: 25px; color: #496989 ;font-family: 'Century Gothic';">Let us help you find yummy and healthy recipes</p>
+    </div>
+  </div>
+  <!-- **********************
 	     Ingredient cards 
        ********************** -->
-  <section class="ingredient-section">
+  <!-- <section class="ingredient-section">
     <h1 class="card-title">Ingredients </h1>
     <h6 class="card-subtitle mb-2 text-muted">Click the ingredient below to find matching recipes</h6>
     <br />
@@ -82,7 +158,78 @@
         </div>
       </button>
       {% endfor %}
+    </div> -->
+
+    <!-- **********************
+      Search Box for Ingredients
+       ********************** -->
+       
+       <h3>Add your ingredients here...</h3>
+       <br/><br/>
+       <div>
+        <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
+          <div class="row w-100">
+              <div class="col-md-10">
+                  <input type="text" class="form-control custom-input w-100" name="q" placeholder="Eggs, Butter, Bread...">
+              </div>
+              <div class="col-md-2">
+                  <button class="btn btn-primary btn-block custom-btn" type="submit">Search</button>
+              </div>
+          </div>
+      </form>
+      
+    
+    <!-- **********************
+      Recipe Tiles
+       ********************** -->
+      <br/><br/>
+      <div class="row">
+        {% for recipe in data %}
+        <div class="col-lg-4 mb-4">
+            <div class="card bg-light-custom recipe-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.cuisine }}</h5>
+                    <p class="card-text"><b>Total Time (min):</b> {{ recipe.time }}</p>
+                    <p class="card-text"><b>Ingredients:</b> {{ recipe.ingredients }}</p>
+                    <p class="card-text"><b>Steps:</b> {{ recipe.steps }}</p>
+                    <p class="card-text"><b>Description:</b> {{ recipe.description }}</p>
+                    <p class="card-text"><b>Ingredient More Needed:</b> {{ recipe.ingredientsMoreNeded }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
+      <!-- <div class="container">
+        {% for recipe in json_data %}
+            <div class="card">
+                <h2>{{ recipe.cuisine }}</h2>
+                <p><strong>Time:</strong> {{ recipe.time }} minutes</p>
+                <p><strong>Ingredients:</strong></p>
+                <ul>
+                    {% for ingredient in recipe.ingredients %}
+                        <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    {% for step in recipe.steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        {% endfor %} -->
+      </div>
+      {% if no_recipes_message %}
+      <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+          {{ no_recipes_message }}
+      </div>
+      {% endif %}
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Masterchef. All rights reserved.</p>
+    </div>
+  </footer>
   </section>
 </body>
 
