@@ -32,69 +32,39 @@
   <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 
   <style>
-    /* Ingredient section */
-/* .ingredient-section{
-  padding: 10px 50px;
+    .food-categories {
+  margin-top: 20px;
 }
 
-.recipe-card {
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.category-tiles {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.recipe-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
+.category-tile {
+  width: calc(33.33% - 20px); /* Adjust the width based on the number of tiles you want in a row */
+  margin: 10px;
+  text-align: center;
 }
 
-.card-body {
-  padding: 20px;
+.category-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
 
-.card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 10px;
+.category-button img {
+  width: 80px; /* Adjust the size of the icon image */
+  height: 80px;
+  display: block;
+  margin: 0 auto 10px;
 }
 
-.card-text {
-  margin-bottom: 10px;
-} */
-
-/* Custom background color */
-/* .bg-light-custom {
-  background: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%) !important;
-  
-} */
-/* Hover effect */
-/* .bg-light-custom:hover {
-  background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%) !important;
-} */
-
-/* .recipe-card {
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.category-button span {
+  font-size: 18px;
 }
 
-.recipe-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.card-text {
-  margin-bottom: 10px;
-} */
- 
   </style>
 </head>
 
@@ -105,21 +75,7 @@
   <!-- **********************
 	 HEADER
 	 ********************** -->
-
-
-  <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #58A399;">
-    <a class="navbar-brand" style="color: rgb(248, 240, 240);" href="/ingredient/home/">Masterchef</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" style="color: rgb(248, 240, 240);" href="/ingredient/home/">About</a>
-        <a class="nav-item nav-link" style="color: rgb(248, 240, 240);" href="/ingredient/home/">Contact us</a>
-      </div>
-    </div>
-  </nav> -->
+  
   <div class="header">
     <a href="/ingredient/home/" class="logo">Masterchef</a>
     <div class="header-right">
@@ -129,101 +85,185 @@
     </div>
   </div>
 
-  <!-- **********************
-	     Banner 
+   <!-- **********************
+	     Slideshow 
        ********************** -->
-       <br/>
-  <div class="jumbotron" style="background-image: url('/static/images/banner-2.jpg');">
-    <div class="container">
-      <h1 class="display-3" style="color: white ;font-family: 'Snell Roundhand';">Hola Amigos</h1>
-      <p class="card-text" style="font-size: 25px; color: #496989 ;font-family: 'Century Gothic';">Let us help you find yummy and healthy recipes</p>
-    </div>
-  </div>
-  <!-- **********************
-	     Ingredient cards 
-       ********************** -->
-  <!-- <section class="ingredient-section">
-    <h1 class="card-title">Ingredients </h1>
-    <h6 class="card-subtitle mb-2 text-muted">Click the ingredient below to find matching recipes</h6>
-    <br />
-    <div class="card-deck">
-      {% for ingredient in all_ingredients %}
-      <button class="searchbutton" id={{ingredient.id}}>
-        <div class="card" style="max-width: 250px;">
-          <img style="width: 250px; height: 250px;" src={{ingredient.img_url}} alt="ingredient" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">{{ingredient.name}}</h5>
-            <p class="card-text text-muted">{{ingredient.property}}</p>
-          </div>
-        </div>
-      </button>
-      {% endfor %}
-    </div> -->
+  <!-- <div class="slideshow-container">
 
+    <div class="mySlides fade">
+     
+      <img src="/static/images/slideshow5.jpg" style="width:100%">
+      
+    </div>
+    
+    <div class="mySlides fade">
+     
+      <img src="/static/images/slideshow6.jpg" style="width:100%">
+      
+    </div>
+    
+    <div class="mySlides fade">
+     
+      <img src="/static/images/slideshow7.jpg" style="width:100%">
+      
+    </div>
+
+    <div class="mySlides fade">
+     
+      <img src="/static/images/slideshow7.jpg" style="width:100%">
+      
+    </div>
+    
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span>
+      <span class="dot"></span> 
+    </div>
+    
+    <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active"); // Remove active class from all slides
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      slides[slideIndex-1].style.display = "block";  
+      slides[slideIndex-1].classList.add("active"); // Add active class to the current slide
+      setTimeout(showSlides, 5000); // Change image every 2 seconds
+    }
+
+    </script> -->
+  
+    <div class="fullsize-image-div">
+      <h1 style="text-align:center; background-color: #deecdd;">Hello, I'm your chef today!</h1>
+    </div>
     <!-- **********************
       Search Box for Ingredients
        ********************** -->
-       
-       <h3>Add your ingredients here...</h3>
-       <br/><br/>
-       <div>
-        <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
-          <div class="row w-100">
-              <div class="col-md-10">
-                  <input type="text" class="form-control custom-input w-100" name="q" placeholder="Eggs, Butter, Bread...">
-              </div>
-              <div class="col-md-2">
-                  <button class="btn btn-primary btn-block custom-btn" type="submit">Search</button>
-              </div>
-          </div>
-      </form>
       
-    
+        <h3>Add your ingredients here...</h3>
+        <br/><br/>
+        <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
+            <div class="row w-100">
+                <div class="col-md-10">
+                    <input type="text" class="form-control custom-input w-100" id="search-bar" name="q" placeholder="Eggs, Butter, Bread...">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-block custom-btn" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+   
+   
     <!-- **********************
-      Recipe Tiles
+      Ingredients Buttons
        ********************** -->
       <br/><br/>
+      <!-- <h1>Distinct Ingredients</h1> -->
+    <!-- Display each distinct ingredient as a button -->
+    <div>
+        {% for ingredient in distinct_ingredients %}
+            <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Add click event listener to each ingredient button
+        document.querySelectorAll('.ingredient-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Get the ingredient value from the data-attribute
+                const ingredient = button.getAttribute('data-ingredient');
+                // Get the search bar element
+                const searchBar = document.getElementById('search-bar');
+                // Append the ingredient value to the search bar
+                searchBar.value += (searchBar.value ? ', ' : '') + ingredient;
+            });
+        });
+    </script>
+    <br/><br/>
+     <!-- **********************
+      Recipe Tiles
+       ********************** -->
       <div class="row">
         {% for recipe in data %}
         <div class="col-lg-4 mb-4">
             <div class="card bg-light-custom recipe-card">
                 <div class="card-body">
                     <h5 class="card-title">{{ recipe.cuisine }}</h5>
+                    <p class="card-text"><b>More Ingredients Needed:</b> {{ recipe.ingredientsMoreNeded }}</p>
                     <p class="card-text"><b>Total Time (min):</b> {{ recipe.time }}</p>
                     <p class="card-text"><b>Ingredients:</b> {{ recipe.ingredients }}</p>
                     <p class="card-text"><b>Steps:</b> {{ recipe.steps }}</p>
                     <p class="card-text"><b>Description:</b> {{ recipe.description }}</p>
-                    <p class="card-text"><b>Ingredient More Needed:</b> {{ recipe.ingredientsMoreNeded }}</p>
+                    
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-      <!-- <div class="container">
-        {% for recipe in json_data %}
-            <div class="card">
-                <h2>{{ recipe.cuisine }}</h2>
-                <p><strong>Time:</strong> {{ recipe.time }} minutes</p>
-                <p><strong>Ingredients:</strong></p>
-                <ul>
-                    {% for ingredient in recipe.ingredients %}
-                        <li>{{ ingredient }}</li>
-                    {% endfor %}
-                </ul>
-                <p><strong>Steps:</strong></p>
-                <ol>
-                    {% for step in recipe.steps %}
-                        <li>{{ step }}</li>
-                    {% endfor %}
-                </ol>
-            </div>
-        {% endfor %} -->
+    <div class="food-categories">
+      <h2>Food Categories</h2>
+      <div class="category-tiles">
+        <div class="category-tile">
+          <button class="category-button" data-category="Vegetables">
+            <img src="/static/images/vegetables-icon.png" alt="Vegetables">
+            <span>Vegetables</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_ingredients %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Fruits">
+            <img src="/static/images/fruits-icon.png" alt="Fruits">
+            <span>Fruits</span>
+          </button>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Meat">
+            <img src="/static/images/meat-icon.png" alt="Meat">
+            <span>Meat</span>
+          </button>
+        </div>
+        <!-- Add more tiles for different categories as needed -->
+      </div>
+    </div>
+    
+
+<!-- Add this script to handle category button clicks -->
+<script>
+  // Add click event listener to each category button
+  document.querySelectorAll('.category-button').forEach(button => {
+      button.addEventListener('click', () => {
+          // Get the category value from the data-attribute
+          const category = button.getAttribute('data-category');
+          // Get the search bar element
+          const searchBar = document.getElementById('search-bar');
+          // Append the category value to the search bar
+          searchBar.value += (searchBar.value ? ', ' : '') + category;
+      });
+  });
+</script>
       </div>
       {% if no_recipes_message %}
       <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
           {{ no_recipes_message }}
       </div>
       {% endif %}
+      
   <!-- Footer Section -->
   <footer class="footer">
     <div class="container">

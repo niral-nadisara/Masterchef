@@ -68,61 +68,9 @@ def get_match_recipe(request):
       response = json.dumps([{'Error': 'No id with that name'}])
   return HttpResponse(response, content_type='text/json')
 
-
-# def read_ingredient_by_name(request):
-#     #all_recipe_ingredients = []
-#     #print("This is the empty array of all ingredients", all_recipe_ingredients)
-#     data = ChefRecipe.objects.all()
-    
-#     if 'q' in request.GET:
-#         q = request.GET['q']
-#         print(q) # Debug purpose
-#         query_terms = q.split(",")
-#         print(query_terms) # Debug purpose
-
-#         for term in query_terms:
-#             data = data.filter(ingredients__icontains=term)
-            
-#             data_ingredients = data.first().ingredients
-#             data_cuisine = data.first().cuisine
-#             data_time = data.first().time
-
-#             #print(data) #Debug purpose
-#             #print("This are the ingredients: ", data_ingredients) # Debug purpose
-#             #print("This is the cuisine: ", data_cuisine) # Debug purpose
-#             #print("This is the time taken to prepare: ", data_time) # Debug purpose
-            
-#     # Convert queryset data to a list of dictionaries
-#     data_dict_list = []
-#     for instance in data:
-#         instance_dict = {
-#             'cuisine': instance.cuisine,
-#             'time': instance.time,
-#             'ingredients': instance.ingredients,
-#             'steps': instance.steps
-#             # Add other fields as needed
-#         }
-#         data_dict_list.append(instance_dict)
-
-#     # Take only the first 10 items for the first page
-#     first_page_data = data_dict_list[:10]
-#     print(first_page_data)
-
-#     #print("Data as Dictionary:", data_dict_list)
-#     # Convert the list of dictionaries to JSON format
-#     json_data = json.dumps(data_dict_list, indent=4)  # Indent for pretty printing
-
-#     # Print the JSON formatted data
-#     #print("Data as JSON:", json_data)
-
-#     paginator = Paginator(data, 10)
-#     page_number = request.GET.get('page', 1)
-#     data = paginator.get_page(page_number)
-
-#     return render(request, 'ingredient.html', {'data': data})
-
 def read_ingredient_by_name(request):
     data = ChefRecipe.objects.all()
+
 
     if 'q' in request.GET:
         q = request.GET['q']
@@ -173,3 +121,34 @@ def read_ingredient_by_name(request):
         data = paginator.page(paginator.num_pages)
 
     return render(request, 'ingredient.html', {'data': data})
+
+def get_All_Ingredients():
+    
+    # Retrieve the first n number of records from the ChefRecipe model
+    data = ChefRecipe.objects.values_list('ingredients', flat=True)[:10]
+
+    # Initialize a set to store distinct ingredients
+    distinct_ingredients = set()
+
+    # Iterate over the ingredients in the first 20 records
+    for ingredients in data:
+        # Split the ingredients string into a list
+        ingredient_list = ingredients.split(',')
+        # Add each ingredient to the set of distinct ingredients
+        distinct_ingredients.update(ingredient_list)
+    print(distinct_ingredients)
+    # Return the distinct ingredients as a list
+    return list(distinct_ingredients)
+
+
+# Call the function to execute
+get_All_Ingredients()
+
+def ingredientView(request):
+    # Call the function to get distinct ingredients
+    distinct_ingredients = get_All_Ingredients()
+    return render(request, 'ingredient.html', {'distinct_ingredients': distinct_ingredients})
+
+
+
+
