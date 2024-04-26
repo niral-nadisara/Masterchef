@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class ingredientItem(models.Model):
   name = models.TextField()
@@ -30,9 +31,16 @@ class categories(models.Model):
   proteins = models.CharField(max_length=100)
   condiments_and_sauces = models.CharField(max_length=100)
   herbs_spices_and_seasonings = models.CharField(max_length=100)
-  fruits = models.CharField(max_length=100)
+  Fruits = models.CharField(max_length=100)
   vegetables = models.CharField(max_length=100)
   miscellaneous = models.CharField(max_length=100)
 
   def __str__(self):
       return "Food Categories"
+  
+class SavedRecipe(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe_id = models.IntegerField()
+
+    def __str__(self):
+        return f"User: {self.user}, Recipe ID: {self.recipe_id}"

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Recipes</title>
+</head>
+<body>
+          <h2>Your Saved Recipes</h2>
+    
+{% for saved_recipe in saved_recipes %}
+    <p>{{ saved_recipe.recipe_id }}</p> <!-- Display relevant fields of saved recipes -->
+{% endfor %}
+</body>
+</html>

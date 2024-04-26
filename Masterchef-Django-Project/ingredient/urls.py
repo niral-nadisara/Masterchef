@@ -8,5 +8,15 @@ urlpatterns = [
 
     #api
     path('api/ingredient_id/<ingredientName>', views.get_ingredientId),
-    path('api/match_recipe/', views.get_match_recipe),
+
+    path('contacts/', views.contactsView, name='contacts'),
+    path('aboutus/', views.aboutUsView, name='aboutUs'),
+
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('signup/', views.signup_view, name='signup'),
+
+    path('save_recipe/', views.save_recipe, name='save_recipe'),
+    path('recipes/saved/', views.saved_recipe, name='saved_recipe'),
+
 ]

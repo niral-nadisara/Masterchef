@@ -43,6 +43,8 @@ body {
   overflow: hidden;
   background-color: white;
   padding: 20px 10px;
+  position: fixed;
+  width: 100%;
 }
 
 .header a {
@@ -95,7 +97,7 @@ h3 {
 }
 
 body {
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed; 
   background-size: 100% 100%;
 }

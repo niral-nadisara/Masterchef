@@ -132,7 +132,7 @@
 }
 /* Hover effect */
 .bg-light-custom:hover {
-  background: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%) !important;
+  background: linear-gradient(60deg, #ADD8E6 0%, #c2e59c 100%) !important;
 }
 
 .recipe-card {
@@ -244,16 +244,16 @@ img {vertical-align: middle;}
 }
 html,
 body {
-  background-color: #F7F7F7;
   padding: 0;
   overflow-x: hidden;
 }
 
 
 .fullsize-image-div {
+  margin-top: 90px;
   width: 100%;
   height: 700px;
-  background-image: url("/static/images/slideshow5.jpg");
+  background-image: linear-gradient(hsla(120,60%,70%,0.3), #496989), url("/static/images/slideshow5.jpg");
   background-size: cover;
   display: flex;
   align-items: center;
@@ -267,7 +267,9 @@ body {
 }
 
 .food-categories {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .category-tiles {
@@ -293,8 +295,140 @@ body {
   height: 80px;
   display: block;
   margin: 0 auto 10px;
+  border-radius: 50%;
 }
 
 .category-button span {
   font-size: 18px;
+}
+
+#search-container {
+  transition: opacity 1s ease; /* Add transition effect */
+}
+
+.fade-out {
+  opacity: 0; /* Set opacity to 0 */
+}
+
+/* Custom styles for the save recipe button */
+#save-recipe-btn-id {
+  /* Add your custom styles here */
+  background-color: #FF5733; /* Example background color */
+  color: white; /* Example text color */
+  border: none; /* Example border style */
+  /* Add more styles as needed */
+}
+
+#save-recipe-btn-id:hover {
+  background-color: #D32F2F; /* Example hover background color */
+}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.content {
+  margin-left: 75px;
+  font-size: 30px;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+/* Create two equal columns that floats next to each other */
+.row {
+  margin-left: 100px;
+}
+* {
+  box-sizing: border-box;
+}
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+.column img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.loved-recipes-message {
+  text-align: center; /* Center the text */
+  font-size: 24px; /* Adjust the font size */
+  color: #333; /* Set the text color */
+  margin-top: 20px; /* Add some top margin */
+  background-color: #ADD8E6;
+  padding: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.suggest-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.suggest-container img {vertical-align: middle;}
+
+.suggest-container .suggest-content {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
 }

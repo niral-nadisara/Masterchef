@@ -26,158 +26,72 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- style  -->
   <link rel="stylesheet" href="{% static 'styles/ingredient.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 
-  <style>
-    .food-categories {
-  margin-top: 20px;
-}
-
-.category-tiles {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.category-tile {
-  width: calc(33.33% - 20px); /* Adjust the width based on the number of tiles you want in a row */
-  margin: 10px;
-  text-align: center;
-}
-
-.category-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.category-button img {
-  width: 80px; /* Adjust the size of the icon image */
-  height: 80px;
-  display: block;
-  margin: 0 auto 10px;
-}
-
-.category-button span {
-  font-size: 18px;
-}
-
-  </style>
 </head>
 
 <!-- **********************
        BODY
        ********************** -->     
-<body background="/static/images/cool-background-1.png">
+<!-- <body background="/static/images/bg-img.png"> -->
+<body>
   <!-- **********************
 	 HEADER
 	 ********************** -->
   
-  <div class="header">
-    <a href="/ingredient/home/" class="logo">Masterchef</a>
-    <div class="header-right">
-      <a class="active" href="/ingredient/home/">Home</a>
-      <a href="/ingredient/home/">Contact</a>
-      <a href="/ingredient/home/">About</a>
-    </div>
+  <!-- HEADER -->
+<div class="header">
+  <a href="/ingredient/home/" class="logo">Masterchef</a>
+  <div class="header-right">
+    <a class="active" href="/ingredient/home/">Home</a>
+    <a href="/ingredient/contacts/">Contact Us</a>
+    <a href="/ingredient/aboutus/">About Us</a>
+    {% if user.is_authenticated %}
+      <a href="/ingredient/logout/">Logout</a>
+      <!-- <a href="/ingredient/recipes/saved/">Saved Recipes</a> -->
+    {% else %}
+      <a href="/ingredient/login/">Login</a>
+      <a href="/ingredient/signup/">Signup</a>
+    {% endif %}
   </div>
+</div>
 
-   <!-- **********************
-	     Slideshow 
-       ********************** -->
-  <!-- <div class="slideshow-container">
-
-    <div class="mySlides fade">
-     
-      <img src="/static/images/slideshow5.jpg" style="width:100%">
-      
-    </div>
-    
-    <div class="mySlides fade">
-     
-      <img src="/static/images/slideshow6.jpg" style="width:100%">
-      
-    </div>
-    
-    <div class="mySlides fade">
-     
-      <img src="/static/images/slideshow7.jpg" style="width:100%">
-      
-    </div>
-
-    <div class="mySlides fade">
-     
-      <img src="/static/images/slideshow7.jpg" style="width:100%">
-      
-    </div>
-    
-    </div>
-    <br>
-    
-    <div style="text-align:center">
-      <span class="dot"></span> 
-      <span class="dot"></span> 
-      <span class="dot"></span>
-      <span class="dot"></span> 
+    <div class="fullsize-image-div" id="search-container">
+      <!-- <h1 style="text-align:center; background-color: #deecdd;">Hello, I'm your chef today!</h1> -->
+      <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
+        <div class="row w-100">
+            <div class="col-md-10">
+                <input type="text" class="form-control custom-input w-100" id="search-bar" name="q" placeholder="Eggs, Butter, Bread...">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary custom-btn" type="submit">Go</button>
+            </div>
+        </div>
+    </form>
+    <!-- <h3>Add your ingredients here...</h3> -->
     </div>
     
     <script>
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("dot");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].classList.remove("active"); // Remove active class from all slides
-        slides[i].style.display = "none";  
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}    
-      slides[slideIndex-1].style.display = "block";  
-      slides[slideIndex-1].classList.add("active"); // Add active class to the current slide
-      setTimeout(showSlides, 5000); // Change image every 2 seconds
+    var lastScrollTop = 0;
+$(window).scroll(function() {
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll > lastScrollTop) {
+        // Scroll down
+        $('#search-container').addClass('fade-out');
+    } else {
+        // Scroll up
+        $('#search-container').removeClass('fade-out');
     }
+    lastScrollTop = currentScroll;
+});
+  </script>
 
-    </script> -->
-  
-    <div class="fullsize-image-div">
-      <h1 style="text-align:center; background-color: #deecdd;">Hello, I'm your chef today!</h1>
-    </div>
-    <!-- **********************
-      Search Box for Ingredients
-       ********************** -->
-      
-        <h3>Add your ingredients here...</h3>
-        <br/><br/>
-        <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
-            <div class="row w-100">
-                <div class="col-md-10">
-                    <input type="text" class="form-control custom-input w-100" id="search-bar" name="q" placeholder="Eggs, Butter, Bread...">
-                </div>
-                <div class="col-md-2">
-                    <button class="btn btn-primary btn-block custom-btn" type="submit">Search</button>
-                </div>
-            </div>
-        </form>
    
-   
-    <!-- **********************
-      Ingredients Buttons
-       ********************** -->
       <br/><br/>
-      <!-- <h1>Distinct Ingredients</h1> -->
-    <!-- Display each distinct ingredient as a button -->
-    <div>
-        {% for ingredient in distinct_ingredients %}
-            <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
-        {% endfor %}
-    </div>
-
     <script>
         // Add click event listener to each ingredient button
         document.querySelectorAll('.ingredient-button').forEach(button => {
@@ -191,7 +105,18 @@
             });
         });
     </script>
-    <br/><br/>
+
+<!--**********************
+    Social Media Stickey Bar
+****************************-->
+
+<div class="icon-bar">
+  <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
+  <a href="#" class="google"><i class="fa fa-google"></i></a> 
+  <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a> 
+</div>
      <!-- **********************
       Recipe Tiles
        ********************** -->
@@ -206,14 +131,42 @@
                     <p class="card-text"><b>Ingredients:</b> {{ recipe.ingredients }}</p>
                     <p class="card-text"><b>Steps:</b> {{ recipe.steps }}</p>
                     <p class="card-text"><b>Description:</b> {{ recipe.description }}</p>
-                    
+                    <!-- Button to save the recipe -->
+                    <a href="#" id="save-recipe-btn-id" class="btn btn-primary save-recipe-btn" data-recipe-id="{{ recipe.id }}">Save Recipe</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          // JavaScript function to handle saving recipes
+          $('.save-recipe-btn').click(function(e) {
+              e.preventDefault();
+              var recipeId = $(this).data('recipe-id');
+              $.ajax({
+                  type: 'POST',
+                  url: '/ingredient/save_recipe/',  
+                  data: {
+                      'recipe_id': recipeId,
+                      'csrfmiddlewaretoken': '{{ csrf_token }}'
+                  },
+                  success: function(response) {
+                      alert(response.message); // Show success message
+                  },
+                  error: function(xhr, status, error) {
+                      console.error(xhr.responseText); // Log error message
+                  }
+              });
+          });
+      });
+      </script>
+  <!-- **********************
+      Ingredients Buttons
+       ********************** -->
+
     <div class="food-categories">
-      <h2>Food Categories</h2>
       <div class="category-tiles">
         <div class="category-tile">
           <button class="category-button" data-category="Vegetables">
@@ -221,7 +174,7 @@
             <span>Vegetables</span>
           </button>
           <div>
-            {% for ingredient in distinct_ingredients %}
+            {% for ingredient in distinct_vegetables %}
                 <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
             {% endfor %}
           </div>
@@ -231,40 +184,196 @@
             <img src="/static/images/fruits-icon.png" alt="Fruits">
             <span>Fruits</span>
           </button>
+          <div>
+            {% for ingredient in distinct_fruits %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
         </div>
         <div class="category-tile">
           <button class="category-button" data-category="Meat">
-            <img src="/static/images/meat-icon.png" alt="Meat">
-            <span>Meat</span>
+            <img src="/static/images/proteins-icon.png" alt="Meat">
+            <span>Proteins</span>
           </button>
+          <div>
+            {% for ingredient in distinct_proteins %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Grains And Flours">
+            <img src="/static/images/grainsnflours-icon.png" alt="Grains And Flours">
+            <span>Grains & Flours</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_grainsnflours %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Nuts and Seeds">
+            <img src="/static/images/nutsnseeds-icon.png" alt="Nuts and Seeds">
+            <span>Nuts & Seeds</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_nutsnseeds %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Sweeteners">
+            <img src="/static/images/sweeteners-icon.png" alt="Sweeteners">
+            <span>Sweeteners</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_sweeteners %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Dairy & Eggs">
+            <img src="/static/images/dairyneggs-icon.png" alt="Dairy & Eggs">
+            <span>Dairy & Eggs</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_dairy_and_egg_products %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Condiments & Sauces">
+            <img src="/static/images/condimentsnsauces-icon.png" alt="Condiments & Sauces">
+            <span>Condiments & Sauces</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_condiments_and_sauces %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="category-tile">
+          <button class="category-button" data-category="Herbs, Spices & Seasonings">
+            <img src="/static/images/dairyneggs-icon.png" alt="Herbs, Spices & Seasonings">
+            <span>Herbs, Spices & Seasonings</span>
+          </button>
+          <div>
+            {% for ingredient in distinct_herbs_spices_and_seasonings %}
+                <button class="ingredient-button" data-ingredient="{{ ingredient }}">{{ ingredient }}</button>
+            {% endfor %}
+          </div>
         </div>
         <!-- Add more tiles for different categories as needed -->
       </div>
     </div>
-    
+  </div> 
 
-<!-- Add this script to handle category button clicks -->
+
+<!--Add Ingredients to the search bar-->
 <script>
-  // Add click event listener to each category button
-  document.querySelectorAll('.category-button').forEach(button => {
-      button.addEventListener('click', () => {
-          // Get the category value from the data-attribute
-          const category = button.getAttribute('data-category');
-          // Get the search bar element
-          const searchBar = document.getElementById('search-bar');
-          // Append the category value to the search bar
-          searchBar.value += (searchBar.value ? ', ' : '') + category;
-      });
-  });
+    // Add click event listener to category buttons
+    document.querySelectorAll('.ingredient-button').forEach(button => {
+        button.addEventListener('click', () => {
+            // Get the category value from the data-attribute
+            const category = button.getAttribute('data-ingredient');
+            // Get the search bar element
+            const searchBar = document.getElementById('search-bar');
+            // Append the category value to the search bar
+            searchBar.value += (searchBar.value ? ', ' : '') + category;
+        });
+    });
 </script>
-      </div>
+      
       {% if no_recipes_message %}
       <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
           {{ no_recipes_message }}
       </div>
       {% endif %}
+
       
-  <!-- Footer Section -->
+<!--************************
+    Recipe Suggestions
+****************************-->  
+<p class="loved-recipes-message">Try some of our most loved recipes !</p>
+
+<div class="row"> 
+  <div class="column">
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-alena-shekhovtcova-6941039.jpg" style="width:100%">
+        <div class="suggest-content">
+          <h1>French Fries</h1>
+          <p><i>Fry love is true love...</i></p>
+        </div>
+    </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-charlotte-may-5946966.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Fresh matcha latte</h1>
+        <p><i>served on table with sweet pie</i></p>
+      </div>
+  </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-charlotte-may-5947109.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Glass of cold cocktail with orange</h1>
+        <p><i>Sip happens!</i></p>
+      </div>
+  </div>
+  <div class="column">
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-shvets-production-7525115.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Muffins</h1>
+        <p><i>Start your day with a muffin delight.</i></p>
+      </div>
+    </div>
+      <div class="suggest-container">
+        <img src="/static/images/recipe-suggestions/pexels-tim-douglas-6210876.jpg" style="width:100%">
+        <div class="suggest-content">
+          <h1>Muffins</h1>
+          <p><i>Start your day with a muffin delight.</i></p>
+        </div>
+      </div>
+      <div class="suggest-container">
+        <img src="/static/images/recipe-suggestions/pexels-valeriya-7474254.jpg" style="width:100%">
+        <div class="suggest-content">
+          <h1>Muffins</h1>
+          <p><i>Start your day with a muffin delight.</i></p>
+        </div>
+      </div>
+  </div>  
+  <div class="column">
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-geraud-pfeiffer-6608619.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Muffins</h1>
+        <p><i>Start your day with a muffin delight.</i></p>
+      </div>
+    </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-ioanamtc-4346328.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Muffins</h1>
+        <p><i>Start your day with a muffin delight.</i></p>
+      </div>
+    </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-klaus-nielsen-6287554.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Muffins</h1>
+        <p><i>Start your day with a muffin delight.</i></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--************************
+   Footer Section 
+  **************************-->
   <footer class="footer">
     <div class="container">
       <p>&copy; 2024 Masterchef. All rights reserved.</p>
