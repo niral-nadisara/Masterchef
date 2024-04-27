@@ -6,20 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles/aboutus.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>About Us</h1>
-        <p>Welcome to our Website! We are dedicated to providing high-quality services and products to our users.</p>
-        <p>Our team consists of passionate individuals who strive for excellence in everything we do.</p>
-        <p>Our mission is to create value for our customers and make a positive impact in the community.</p>
-    </div>   
-        <div class="image-grid">
+
+<!-- **********************
+        NAVIGATION BAR
+	 ********************** -->
+  
+   <div class="header" style="top:0px">
+    <a href="/ingredient/home/" class="logo">Masterchef</a>
+    <div class="header-right">
+      <a class="active" href="/ingredient/home/">Home</a>
+      <a href="/ingredient/contacts/">Contact Us</a>
+      <a href="/ingredient/aboutus/">About Us</a>
+      {% if user.is_authenticated %}
+        <a href="/ingredient/logout/">Logout</a>
+        <!-- <a href="/ingredient/recipes/saved/">Saved Recipes</a> -->
+      {% else %}
+        <a href="/ingredient/login/">Login</a>
+        <a href="/ingredient/signup/">Signup</a>
+      {% endif %}
+    </div>
+  </div>
+
+    <div class="container" style="margin-top: 100px; height: 1000px;">
+        <!-- <h1>About Us</h1>
+        <p>Master checf!</p> -->
+       
+        <h2>Our Story</h2>
+        <p>
+          During our university days, we often found ourselves experimenting in the kitchen, trying out new recipes, and exploring different cuisines. However, we faced challenges in finding reliable and user-friendly resources that catered to our specific needs and dietary preferences. That's when the idea for Master Chef was born.
+          <br>
+          We envisioned a platform that would not only provide a vast collection of recipes but also empower users to customize their cooking experience based on the ingredients they have on hand. With Master Chef, we aim to eliminate the frustration of searching for recipes that match your available ingredients and dietary restrictions.
+        </p>
+      
+        <!-- <div class="image-grid">
             <img src="/static/images/Suraj 2.jpeg" alt="Suraj Alluri">
             <img src="/static/images/Niral.jpg" alt="Niral Nadisara">
             <img src="/static/images/samson 2.jpeg" alt="Samson Williams">
-        </div>
-   
+        </div> -->
+        <div class="row">
+          <h2>Our Team</h2>
+          <div class="column">
+            <div class="card">
+              <img src="/static/images/Suraj 2.jpeg" alt="Suraj Alluri" style="width:200px">
+              <div class="box">
+                <h2>Suraj Reddy Alluri</h2>
+                <!-- <p class="title">CEO & Founder</p> -->
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>surajAlluri@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        
+          <div class="column">
+            <div class="card">
+              <img src="/static/images/Niral.jpeg" alt="Niral Nadisara" style="width:100%">
+              <div class="box">
+                <h2>Niral Nadisara</h2>
+                <!-- <p class="title">Art Director</p> -->
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>NiralNadisara@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        
+          <div class="column">
+            <div class="card">
+              <img src="/static/images/samson 2.jpeg" alt="Samson" style="width:250px">
+              <div class="box">
+                <h2>Samson Williams</h2>
+                <!-- <p class="title">Designer</p> -->
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>samsonWilliams@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div> 
 <!--************************
    Footer Section 
   **************************-->

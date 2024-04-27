@@ -7,18 +7,56 @@
     <title>Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/contactus.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
-
-    <div class="container">
+     <!-- **********************
+        NAVIGATION BAR
+	 ********************** -->
+  
+<div class="header" style="top:0px">
+    <a href="/ingredient/home/" class="logo">Masterchef</a>
+    <div class="header-right">
+      <a class="active" href="/ingredient/home/">Home</a>
+      <a href="/ingredient/contacts/">Contact Us</a>
+      <a href="/ingredient/aboutus/">About Us</a>
+      {% if user.is_authenticated %}
+        <a href="/ingredient/logout/">Logout</a>
+        <!-- <a href="/ingredient/recipes/saved/">Saved Recipes</a> -->
+      {% else %}
+        <a href="/ingredient/login/">Login</a>
+        <a href="/ingredient/signup/">Signup</a>
+      {% endif %}
+    </div>
+  </div>
+  
+    
+    <div class="container" style="margin-top: 100px;">
+        <div class="form-card">
         <h1>Contact Us</h1>
         <!-- Contact Info -->
+       
         <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> Masterchef@gmail.com</p>
+            <p>
+                Thank you for your interest in Master Chef! We're excited to bring you an innovative and user-friendly cookbook experience.<br>
+                At Master Chef, our mission is to make cooking more accessible and enjoyable for everyone. We believe that with the right guidance and tools, anyone can become a master in the kitchen.<br>
+                If you have any questions, feedback, or suggestions regarding our app, we'd love to hear from you. Your input is valuable and will help us improve our services to better meet your needs.<br>
+            <br><br>
+                <b><h2>Get in Touch</h2></b>
+                <ul>
+                You can reach out to us through the following channels:<br>
+                <i class="fa fa-envelope"></i> support@masterchef.com<br>
+                <i class="fa fa-mobile-alt"></i> 1-800-123-4567<br>
+                <address> Master Chef Inc., 123 Culinary Lane, Kitchen City, State 12345</address>
+            </ul>
+            </p>
+            <!-- <p><i class="fas fa-envelope"></i> Masterchef@gmail.com</p>
             <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
-            <p><i class="fas fa-map-marker-alt"></i> 123 Street, MA, USA</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Street, MA, USA</p> -->
         </div>
+    
         <!-- Contact Form -->
+       
         <div class="contact-form">
             <form id="contactForm">
                 <div class="form-group">
@@ -36,6 +74,7 @@
                 <button type="submit" class="btn-submit">Send Message</button>
             </form>
         </div>
+    </div>
     </div>
 
     <!-- Font Awesome -->

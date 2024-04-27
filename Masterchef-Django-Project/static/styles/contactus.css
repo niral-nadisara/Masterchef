@@ -3,6 +3,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color:  #0056b3;
+    line-height: 1.5;
 }
 body {
     font-family: Arial, sans-serif;
@@ -11,12 +13,16 @@ body {
 }
 /* Container */
 .container {
-    max-width: 800px;
+    max-width: 1300px;
     margin: 50px auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.form-card{
+    width:100%;
+    height: 600px;
 }
 h1 {
     text-align: center;
@@ -28,8 +34,11 @@ p {
 }
 /* Contact Info */
 .contact-info {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left;
+    margin: 0 auto;
+    padding: 5px;
+    width:50%;
+    float:left;
 }
 .contact-info i {
     font-size: 24px;
@@ -47,6 +56,8 @@ p {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width:50%;
+    float:left;
 }
 .form-group {
     margin-bottom: 20px;
