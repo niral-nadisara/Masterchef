@@ -36,14 +36,14 @@
 
 <!-- **********************
        BODY
-       ********************** -->     
-<!-- <body background="/static/images/bg-img.png"> -->
+    ********************** -->     
+
 <body>
+
   <!-- **********************
-	 HEADER
+        NAVIGATION BAR
 	 ********************** -->
   
-  <!-- HEADER -->
 <div class="header">
   <a href="/ingredient/home/" class="logo">Masterchef</a>
   <div class="header-right">
@@ -60,21 +60,26 @@
   </div>
 </div>
 
-    <div class="fullsize-image-div" id="search-container">
-      <!-- <h1 style="text-align:center; background-color: #deecdd;">Hello, I'm your chef today!</h1> -->
-      <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
+<!-- **********************
+	 HERO IMAGE
+	 ********************** -->
+   <div class="fullsize-image-div" id="search-container">
+    <!-- <h1 style="text-align:center; background-color: #deecdd;">Hello, I'm your chef today!</h1> -->
+    <form class="form-inline" method="GET" action="{% url 'read_ingredient_by_name' %}">
         <div class="row w-100">
             <div class="col-md-10">
-                <input type="text" class="form-control custom-input w-100" id="search-bar" name="q" placeholder="Eggs, Butter, Bread...">
+                <input type="text" class="form-control custom-input w-100" id="search-bar" name="q" placeholder="Eggs, Butter, Bread..." style="height: 50px; font-size: 20px;">
             </div>
             <div class="col-md-2">
-                <button class="btn btn-primary custom-btn" type="submit">Go</button>
+                <button class="btn btn-primary custom-btn" type="submit" style="height: 50px; font-size: 20px;">Go</button>
             </div>
         </div>
     </form>
-    <!-- <h3>Add your ingredients here...</h3> -->
-    </div>
-    
+</div>
+
+
+
+    <br/><br/>
     <script>
     var lastScrollTop = 0;
 $(window).scroll(function() {
@@ -89,9 +94,6 @@ $(window).scroll(function() {
     lastScrollTop = currentScroll;
 });
   </script>
-
-   
-      <br/><br/>
     <script>
         // Add click event listener to each ingredient button
         document.querySelectorAll('.ingredient-button').forEach(button => {
@@ -105,7 +107,6 @@ $(window).scroll(function() {
             });
         });
     </script>
-
 <!--**********************
     Social Media Stickey Bar
 ****************************-->
@@ -120,6 +121,7 @@ $(window).scroll(function() {
      <!-- **********************
       Recipe Tiles
        ********************** -->
+
       <div class="row">
         {% for recipe in data %}
         <div class="col-lg-4 mb-4">
@@ -138,7 +140,7 @@ $(window).scroll(function() {
         </div>
         {% endfor %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
     <script>
       $(document).ready(function() {
           // JavaScript function to handle saving recipes
@@ -165,7 +167,7 @@ $(window).scroll(function() {
   <!-- **********************
       Ingredients Buttons
        ********************** -->
-
+       <p class="ingredients-message">Here's our range of ingredients for you to pick !!!</p>
     <div class="food-categories">
       <div class="category-tiles">
         <div class="category-tile">
@@ -258,7 +260,7 @@ $(window).scroll(function() {
         </div>
         <div class="category-tile">
           <button class="category-button" data-category="Herbs, Spices & Seasonings">
-            <img src="/static/images/dairyneggs-icon.png" alt="Herbs, Spices & Seasonings">
+            <img src="/static/images/herbsnseasonings-icon.png" alt="Herbs, Spices & Seasonings">
             <span>Herbs, Spices & Seasonings</span>
           </button>
           <div>
@@ -270,8 +272,6 @@ $(window).scroll(function() {
         <!-- Add more tiles for different categories as needed -->
       </div>
     </div>
-  </div> 
-
 
 <!--Add Ingredients to the search bar-->
 <script>
@@ -287,6 +287,7 @@ $(window).scroll(function() {
         });
     });
 </script>
+
       
       {% if no_recipes_message %}
       <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
@@ -298,16 +299,16 @@ $(window).scroll(function() {
 <!--************************
     Recipe Suggestions
 ****************************-->  
-<p class="loved-recipes-message">Try some of our most loved recipes !</p>
+<p class="loved-recipes-message">TRY SOME OF OUR MOST LOVED RECIPES</p>
 
-<div class="row"> 
-  <div class="column">
+<div class="suggest-row"> 
+  <div class="suggest-column">
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-alena-shekhovtcova-6941039.jpg" style="width:100%">
-        <div class="suggest-content">
-          <h1>French Fries</h1>
-          <p><i>Fry love is true love...</i></p>
-        </div>
+      <div class="suggest-content">
+        <h1>French Fries</h1>
+        <p><i>Fry love is true love...</i></p>
+      </div>
     </div>
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-charlotte-may-5946966.jpg" style="width:100%">
@@ -315,15 +316,16 @@ $(window).scroll(function() {
         <h1>Fresh matcha latte</h1>
         <p><i>served on table with sweet pie</i></p>
       </div>
-  </div>
+    </div>
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-charlotte-may-5947109.jpg" style="width:100%">
       <div class="suggest-content">
         <h1>Glass of cold cocktail with orange</h1>
         <p><i>Sip happens!</i></p>
       </div>
+    </div>
   </div>
-  <div class="column">
+  <div class="suggest-column">
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-shvets-production-7525115.jpg" style="width:100%">
       <div class="suggest-content">
@@ -331,46 +333,70 @@ $(window).scroll(function() {
         <p><i>Start your day with a muffin delight.</i></p>
       </div>
     </div>
-      <div class="suggest-container">
-        <img src="/static/images/recipe-suggestions/pexels-tim-douglas-6210876.jpg" style="width:100%">
-        <div class="suggest-content">
-          <h1>Muffins</h1>
-          <p><i>Start your day with a muffin delight.</i></p>
-        </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-tim-douglas-6210876.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Chicken like Never Before</h1>
+        <p><i>Grilled whole chicken with vegetables and fruits in glass bowl</i></p>
       </div>
-      <div class="suggest-container">
-        <img src="/static/images/recipe-suggestions/pexels-valeriya-7474254.jpg" style="width:100%">
-        <div class="suggest-content">
-          <h1>Muffins</h1>
-          <p><i>Start your day with a muffin delight.</i></p>
-        </div>
+    </div>
+    <div class="suggest-container">
+      <img src="/static/images/recipe-suggestions/pexels-valeriya-7474254.jpg" style="width:100%">
+      <div class="suggest-content">
+        <h1>Doughnuts</h1>
+        <p><i>Delicious chocolate doughnuts decorated with sprinkles</i></p>
       </div>
+    </div>
   </div>  
-  <div class="column">
+  <div class="suggest-column">
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-geraud-pfeiffer-6608619.jpg" style="width:100%">
       <div class="suggest-content">
-        <h1>Muffins</h1>
-        <p><i>Start your day with a muffin delight.</i></p>
+        <h1>Vegetarian Dishes</h1>
+        <p><i>White asparagus with sauce near vegetarian dishes with herbs</i></p>
       </div>
     </div>
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-ioanamtc-4346328.jpg" style="width:100%">
       <div class="suggest-content">
-        <h1>Muffins</h1>
-        <p><i>Start your day with a muffin delight.</i></p>
+        <h1>Pancakes</h1>
+        <p><i>I flippin love you</i></p>
       </div>
     </div>
     <div class="suggest-container">
       <img src="/static/images/recipe-suggestions/pexels-klaus-nielsen-6287554.jpg" style="width:100%">
       <div class="suggest-content">
-        <h1>Muffins</h1>
-        <p><i>Start your day with a muffin delight.</i></p>
+        <h1>Delicious Spaghetti on Plate</h1>
+        <p><i>More Spaghetti Less Upsetti</i></p>
       </div>
     </div>
   </div>
 </div>
-
+<!--********************
+Scroll to the Top button
+************************-->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<script>
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
+  
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
 <!--************************
    Footer Section 
   **************************-->
@@ -379,7 +405,6 @@ $(window).scroll(function() {
       <p>&copy; 2024 Masterchef. All rights reserved.</p>
     </div>
   </footer>
-  </section>
 </body>
 
 </html>

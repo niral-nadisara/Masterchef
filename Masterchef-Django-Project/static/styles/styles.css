@@ -21,12 +21,12 @@
 
 /* Custom button style */
 .custom-btn {
-    background-color: #496989; /* Button background color */
+    background-color:#E2F4C5; /* Button background color */
     border: none;
-    color: white; /* Button text color */
+    color: #496989; /* Button text color */
     padding: 10px 20px; /* Padding for button */
     font-size: 16px; /* Button font size */
-    border-radius: 5px; /* Button border radius */
+    border-radius: 50px; /* Button border radius */
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -45,6 +45,7 @@ body {
   padding: 20px 10px;
   position: fixed;
   width: 100%;
+  z-index: 1000;
 }
 
 .header a {
@@ -59,8 +60,9 @@ body {
 }
 
 .header a.logo {
-  font-size: 25px;
+  font-size: 55px;
   font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .header a:hover {

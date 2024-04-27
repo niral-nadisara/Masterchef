@@ -1,15 +1,9 @@
-from audioop import reverse
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import ingredientItem, recipeItem, ChefRecipe, categories, SavedRecipe
-import json
-from django.core.serializers import serialize
+from .models import ChefRecipe, categories, SavedRecipe
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -101,38 +95,7 @@ def saved_recipe(request):
     }
     return render(request, 'savedRecipes.html', context)
 
-#view for search recipe page
-def searchView(request, ingredientId):
-    all_recipes= recipeItem.objects.all()
-    ingredientObject = ingredientItem.objects.get(id = ingredientId)
-    payload = [ingredientObject.name]
-    list_recipes = []
-    for i in range(0, len(all_recipes)):
-      names = []
-      ingredients = all_recipes[i].list_ingredient.all()
-      for j in range(0, len(ingredients)):
-        names.append(ingredients[j].name)
-      if set(payload).issubset(set(names)):
-        list_recipes.append({'name': all_recipes[i].name,
-        'ingredients': all_recipes[i].ingredients.split('#'),
-        'directions': all_recipes[i].directions.split('#'),
-        'img_url': all_recipes[i].img_url})
-    return render(request, 'searchRecipe.html',
-    {'ingredientObject': ingredientObject,
-    'all_recipes': all_recipes,
-    'list_recipes' : list_recipes})
-
-#get ingredient id
-def get_ingredientId(request, ingredientName):
-  if request.method == 'GET':
-    try:
-        ingredientId = ingredientItem.objects.get(name = ingredientName).id
-        response = json.dumps([{'ingredientId': ingredientId}])
-    except:
-        response = json.dumps([{'Error': 'No id with that name'}])
-  return HttpResponse(response, content_type='text/json')
-
-@login_required
+#@login_required
 def read_ingredient_by_name(request):
     data = ChefRecipe.objects.all()
 
@@ -149,8 +112,6 @@ def read_ingredient_by_name(request):
         ingredients_list = [item.strip() for item in instance.ingredients.split(",")]
         ingredients_list = list(ingredients_list)
         items_to_remove = list(q.split(","))
-        # print("Initial Ingredients List:", ingredients_list)
-        # print("Items to Remove:", items_to_remove)
 
         # Remove items dynamically using list comprehension
         ingredients_listUpdated = [item for item in ingredients_list if item not in items_to_remove]
@@ -188,33 +149,7 @@ def read_ingredient_by_name(request):
 
     return render(request, 'ingredient.html', {'data': data})
 
-def get_All_Ingredients():
-    
-    # Retrieve the first n number of records from the ChefRecipe model
-    data = ChefRecipe.objects.values_list('ingredients', flat=True)[:10]
-
-    # Initialize a set to store distinct ingredients
-    distinct_ingredients = set()
-
-    # Iterate over the ingredients in the first 20 records
-    for ingredients in data:
-        # Split the ingredients string into a list
-        ingredient_list = ingredients.split(',')
-        # Add each ingredient to the set of distinct ingredients
-        distinct_ingredients.update(ingredient_list)
-    print(distinct_ingredients)
-    # Return the distinct ingredients as a list
-    return list(distinct_ingredients)
-
-
-# Call the function to execute
-get_All_Ingredients()
-
-# def ingredientView(request):
-#     # Call the function to get distinct ingredients
-#     distinct_ingredients = get_All_Ingredients()
-#     return render(request, 'ingredient.html', {'distinct_ingredients': distinct_ingredients})
-
+#View for Displaying food categories
 def get_All_Ingredients(column_name):
 
     # Retrieve distinct ingredients from the specified column of the ChefRecipe model
@@ -234,11 +169,13 @@ def get_All_Ingredients(column_name):
             # Add each ingredient to the set of distinct ingredients
             distinct_ingredients.update(ingredient_list)
 
+
     # Return the distinct ingredients as a list
     return list(distinct_ingredients)
 
-
+#View calls get_All_ingredients with column name to get distinct ingredients
 def ingredientView(request):
+    
     # Call the function to get distinct ingredients for a specific column
     distinct_vegetables = get_All_Ingredients('vegetables')
     distinct_fruits = get_All_Ingredients('Fruits')
