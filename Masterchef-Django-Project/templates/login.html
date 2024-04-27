@@ -7,8 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
+         <!-- **********************
+        NAVIGATION BAR
+	 ********************** -->
+  
+<div class="header" style="top:0px">
+    <a href="/ingredient/home/" class="logo">Masterchef</a>
+    <div class="header-right">
+      <a class="active" href="/ingredient/home/">Home</a>
+      <a href="/ingredient/contacts/">Contact Us</a>
+      <a href="/ingredient/aboutus/">About Us</a>
+      {% if user.is_authenticated %}
+        <a href="/ingredient/logout/">Logout</a>
+        <!-- <a href="/ingredient/recipes/saved/">Saved Recipes</a> -->
+      {% else %}
+        <a href="/ingredient/login/">Login</a>
+        <a href="/ingredient/signup/">Signup</a>
+      {% endif %}
+    </div>
+  </div>
     <div class="container">
         <h1>Login</h1>
         <form method="post" class="form">
